@@ -1,0 +1,120 @@
+.popup-container {
+    display: inline-block;
+    padding: 20px;
+    /* width: 100%; */
+
+}
+
+.popup-container .neuro-mapping-container {
+    background: linear-gradient(to right, #610010 0%, #21016b 100%);
+    border-radius: 3px;
+}
+
+.popup-container .neuro-mapping-container h1 {
+    text-align: center;
+    font-variant-caps: all-small-caps;
+    font-size: 20px;
+    color: #fff;
+}
+
+
+.popup-container .ppid-areas-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    /* width: 103%; */
+}
+
+.popup-container .ppid-areas-container .ppid-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-container .ppid-areas-container .ppid-container label {
+    border: 1px solid #00005a;
+    padding: 5px;
+    color: #fff;
+    background-color: #00005a;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.popup-container .ppid-areas-container .ppid-container input {
+    padding: 6.9px 0;
+    outline: none;
+    border-color: #000022;
+    text-align: center;
+}
+
+.popup-container .title-container {
+    /* margin-top: 15px; */
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px; */
+    border: none;
+}
+
+.popup-container .title-container span {
+    font-variant-caps: all-small-caps;
+    font-size: 20px;
+    color: #fff;
+}
+
+
+.submit-btn {
+    width: 100%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+    font-family: 'Poppins', 'sans-serif';
+}
+
+.submit-btn span {
+    background-image: linear-gradient(to right, #005077 0%, #0b8793 51%, #005077 100%);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 2%;
+    width: 20%;
+    text-align: center;
+}
+
+.submit-btn span:hover {
+    background-image: linear-gradient(to right, #0b8793 0%, #005077 51%, #0b8793 100%);
+}
+
+.css-levciy-MuiTablePagination-displayedRows {
+    display: none;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .popup-container .ppid-areas-container {
+        display: block;
+        width: 82%;
+    }
+
+    .popup-container .ppid-areas-container .areas-container .box {
+        min-width: 155px;
+        margin-top: 20px;
+    }
+
+    .popup-container .ppid-areas-container .ppid-container label {
+        padding: 0px 3px;
+        color: #fff;
+        background-color: #000033;
+    }
+
+    .popup-container .ppid-areas-container .ppid-container input {
+        padding: 13.7px 0;
+        outline: none;
+        border-color: #000022;
+        text-align: center;
+    }
+}
