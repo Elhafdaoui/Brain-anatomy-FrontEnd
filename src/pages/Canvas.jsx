@@ -3,12 +3,7 @@ import './canvas.css'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { NeuroMapping } from './../components/Navbar/PopUp/NeuroMapping';
+import { NeuroMapping } from './../components/PopUp/NeuroMapping';
 
 import domtoimage from 'dom-to-image';
 import FileSaver from 'file-saver';
@@ -26,13 +21,13 @@ const viewsArray = [
 ]
 //Areas : Image - label array
 const areasArray = [
-  { src: require("../assets/front/frontal.png"), label: "FRONTAL LOBES" },
-  { src: require("../assets/back/occipital.png"), label: "OCCIPITAL LOBES" },
-  { src: require("../assets/top/parietal.png"), label: "PARIETAL LOBES" },
-  { src: require("../assets/bottom/temporal.png"), label: "TEMPORAL LOBES" },
-  { src: require("../assets/front/L_hemisphere.png"), label: "LEFT CEREBRAL HEMISPHERE" },
-  { src: require("../assets/front/R_hemisphere.png"), label: "RIGHT CEREBRAL HEMISPHERE" },
-  { src: require("../assets/front/cortex.png"), label: "CEREBRAL CORTEX" }
+  { src: require("../assets/front/frontal.png"), label: "FRONTAL LOBES",description:"The frontal lobe, which is highly malleable and susceptible to developmental damage, is the primary command center of humans. It plays a vital role in everything, including movement, intelligence, the anticipation of consequences, and planning future actions, despite being the last lobe to evolve.  The Broca's Area is embedded within this lobe." },
+  { src: require("../assets/back/occipital.png"), label: "OCCIPITAL LOBES",description:"The occipital lobe, which shrouds most of the brain's visual cortex, allows humans not only to see and to process stimuli from the external world but also to assign meaning to and to recall visual perceptions/figures." },
+  { src: require("../assets/top/parietal.png"), label: "PARIETAL LOBES",description:"The parietal lobe is vital for sensory perception and integration since it houses the brain's primary sensory area, which is a region where the brain interprets inputs from other areas of the body. As suggested by neurological research, as the sensory input into a region of the body increases, the dedicated surface area of the parietal lobe to that area also increases." },
+  { src: require("../assets/bottom/temporal.png"), label: "TEMPORAL LOBES",description:"The temporal lobe is so named because it is positioned toward the base of the center of the cortex just behind the temples. Rather than controlling the mind, this lobe adapts to the environment, creating a complex mind-body-environment interplay that constantly changes a person's subjective experiences.  Wernicke's Area is a part of this lobe." },
+  { src: require("../assets/front/L_hemisphere.png"), label: "LEFT CEREBRAL HEMISPHERE",description:"The left cerebral hemisphere, which is the dominant brain for most humans, consists of analytical resources and sequencing resources to carry out complex tasks." },
+  { src: require("../assets/front/R_hemisphere.png"), label: "RIGHT CEREBRAL HEMISPHERE",description:"The right cerebral hemisphere, also known as the creative brain, allows humans to process data sufficiently in a mono-semantic way and to associate reality with either factitious information or abstract imagination." },
+  { src: require("../assets/front/cortex.png"), label: "CEREBRAL CORTEX",description:"According to neuroscience, the cerebral cortex is a telencephalic structure located at the surface of the cerebral hemispheres. It is the brain acquired through evolution and it is the command center for almost every human faculty. The cerebral cortex resembles a six-layer sheet of neurons that is folded to fit into the confines of the skull. Each cerebral hemisphere is made of six (6) anatomically distinct lobes: frontal, occipital, parietal, temporal, limbic, and insular; however, the first four (4) listed are most connected to the knowledge centers and competency. Although structurally similar, the two (2) cerebral hemispheres of the cortex are not functionally equivalent." }
 ]
 
 
@@ -108,8 +103,8 @@ const Initial_PP_indicator = {
 export const Canvas = () => {
 
   const [open, setOpen] = React.useState(false); //True if popup is opened
-  const [view, setView] = React.useState(undefined) //This contains the value of the selected view
-  const [area, setArea] = React.useState(undefined) //This contains the value of the selected area
+  const [view, setView] = React.useState("FRONT") //This contains the value of the selected view
+  const [area, setArea] = React.useState("FRONTAL LOBES") //This contains the value of the selected area
 
   const [PPIndicators, setPPIndicators] = React.useState(Initial_PP_indicator) //Area's pp indicators
 
@@ -156,14 +151,42 @@ export const Canvas = () => {
       )
       case 'PARIETAL LOBES': return (
         <div style={{ fontWeight: 'bold', color: "#000" }}>
-          <p>PARIETAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_pareital']}</span></p>
-          <p>PARIETAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['R_pareital']}</span></p>
+          <p>PARIETAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_parietal']}</span></p>
+          <p>PARIETAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['R_parietal']}</span></p>
         </div>
       )
       case 'TEMPORAL LOBES': return (
         <div style={{ fontWeight: 'bold', color: "#000" }}>
           <p>TEMPORAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_temporal']}</span></p>
           <p>TEMPORAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['R_temporal']}</span></p>
+        </div>
+      )
+      case 'LEFT CEREBRAL HEMISPHERE': return (
+        <div style={{ fontWeight: 'bold', color: "#000" }}>
+          <p>FRONTAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_frontal']}</span></p>
+          <p>OCCIPITAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_occipital']}</span></p>
+          <p>PARIETAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_parietal']}</span></p>
+          <p>TEMPORAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_temporal']}</span></p>
+        </div>
+      )
+      case 'RIGHT CEREBRAL HEMISPHERE': return (
+        <div style={{ fontWeight: 'bold', color: "#000" }}>
+          <p>FRONTAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_frontal']}</span></p>
+          <p>OCCIPITAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_occipital']}</span></p>
+          <p>PARIETAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_parietal']}</span></p>
+          <p>TEMPORAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_temporal']}</span></p>
+        </div>
+      )
+      case 'CEREBRAL CORTEX': return (
+        <div style={{ fontWeight: 'bold', color: "#000" }}>
+          <p>FRONTAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_frontal']}</span></p>
+          <p>FRONTAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_frontal']}</span></p>
+          <p>OCCIPITAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_occipital']}</span></p>
+          <p>OCCIPITAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_occipital']}</span></p>
+          <p>PARIETAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_parietal']}</span></p>
+          <p>PARIETAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_parietal']}</span></p>
+          <p>TEMPORAL LOBE(L): <span style={{ color: 'red' }}>{PPIndicators['L_temporal']}</span></p>
+          <p>TEMPORAL LOBE(R): <span style={{ color: 'red' }}>{PPIndicators['L_temporal']}</span></p>
         </div>
       )
       default: return
@@ -193,34 +216,32 @@ export const Canvas = () => {
 
           <div className='view-areas-container'>
             <div className="inside-view-areas-container">
-              <div className="views-container">
+            <div className="views-container">
                 <label>VIEWS</label>
                 <select onChange={handleView}>
-                  <optgroup label="SELECT A VIEWPOINT :">
-                    <option style={{ display: "none" }}></option>
-                    <option value="FRONT">Front View</option>
-                    <option value="BACK">Back View</option>
-                    <option value="TOP">Top View</option>
-                    <option value="BOTTOM">Bottom View</option>
-                    <option value="LEFT">Left View</option>
-                    <option value="RIGHT">Right View</option>
-                  </optgroup>
+                  {/* <optgroup label="SELECT A VIEWPOINT :"> */}
+                  <option value="FRONT">FRONT VIEW</option>
+                  <option value="BACK">BACK VIEW</option>
+                  <option value="TOP">TOP VIEW</option>
+                  <option value="BOTTOM">BOTTOM VIEW</option>
+                  <option value="LEFT">LEFT VIEW</option>
+                  <option value="RIGHT">RIGHT VIEW</option>
+                  {/* </optgroup> */}
                 </select>
               </div>
 
               <div className="areas-container">
                 <label>AREAS</label>
                 <select onChange={handleAreas}>
-                  <optgroup label="SELECT A BRAIN AREA:">
-                    <option style={{ display: "none" }}></option>
-                    <option value="FRONTAL LOBES">FRONTAL LOBES</option>
-                    <option value="OCCIPITAL LOBES">OCCIPITAL LOBES</option>
-                    <option value="PARIETAL LOBES">PARIETAL LOBES</option>
-                    <option value="TEMPORAL LOBES">TEMPORAL LOBES</option>
-                    <option value="LEFT CEREBRAL HEMISPHERE">LEFT CEREBRAL HEMISPHERE </option>
-                    <option value="RIGHT CEREBRAL HEMISPHERE">RIGHT CEREBRAL HEMISPHERE </option>
-                    <option value="CEREBRAL CORTEX">CEREBRAL CORTEX</option>
-                  </optgroup>
+                  {/* <optgroup label="SELECT A BRAIN AREA:"> */}
+                  <option value="FRONTAL LOBES">FRONTAL LOBES</option>
+                  <option value="OCCIPITAL LOBES">OCCIPITAL LOBES</option>
+                  <option value="PARIETAL LOBES">PARIETAL LOBES</option>
+                  <option value="TEMPORAL LOBES">TEMPORAL LOBES</option>
+                  <option value="LEFT CEREBRAL HEMISPHERE">LEFT CEREBRAL HEMISPHERE </option>
+                  <option value="RIGHT CEREBRAL HEMISPHERE">RIGHT CEREBRAL HEMISPHERE </option>
+                  <option value="CEREBRAL CORTEX">CEREBRAL CORTEX</option>
+                  {/* </optgroup> */}
                 </select>
               </div>
               <p style={{ fontWeight: 'bold', color: "#000" }}>PERFORMANCE POINT ID : <span style={{ color: 'red' }}>X</span></p>
@@ -228,10 +249,17 @@ export const Canvas = () => {
               {/* {view ? <p style={{ fontWeight: 'bold', color: "#000" }}>VIEW : {view}</p> : ""} */}
               {/* {area ? <p style={{ fontWeight: 'bold', color: "#000" }}>AREA : {area}</p> : ""} */}
               {/* <p style={{ fontWeight: 'bold', color: "#000" }}>DESCRIPTION :</p> */}
-              <legend style={{ fontWeight: 'bold',color:"#000" }}>DESCRIPTION</legend>
-              <fieldset className='description'>
-                <p>Mind Tools is a coarse indicator for neuroexperts to associate human competencies of a given performance point to the major lobes of the cerebral cortex via relevant cognitive functions at the structural level </p>
-              </fieldset>
+              
+              {areasArray.map((element, index) => (
+                element.label === area ?
+                  <>
+                    <fieldset className='description'>
+                      <legend style={{ fontWeight: 'bold' }}>DESCRIPTION</legend>
+                      <p>{element.description}</p>
+                    </fieldset>
+                  </> : ""
+              ))}
+            
             </div>
           </div>
 

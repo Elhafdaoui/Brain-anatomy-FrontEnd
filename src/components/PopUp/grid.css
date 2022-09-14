@@ -1,0 +1,27 @@
+#functions {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#functions td,
+#functions th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#functions tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#functions tr:hover {
+    background-color: #ddd;
+}
+
+#functions th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #000000;
+    color: white;
+}

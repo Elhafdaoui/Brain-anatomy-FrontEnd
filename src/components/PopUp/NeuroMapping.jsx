@@ -53,6 +53,7 @@ export const NeuroMapping = ({ open, setOpen, PPIndicators, setPPIndicators }) =
         const temp = PPIndicators
         temp[area] = response.pp_indicator;
         setPPIndicators(temp)
+        setCheckedFns([])
         setOpen(false)
       })
       .catch(err => {
@@ -112,11 +113,11 @@ export const NeuroMapping = ({ open, setOpen, PPIndicators, setPPIndicators }) =
                     }}
                   >
                     <MenuItem value="L_frontal" >Frontal Lobe (L)</MenuItem>
-                    <MenuItem value="R_frontal" >Front Lobe (R)</MenuItem>
+                    <MenuItem value="R_frontal" >Frontal Lobe (R)</MenuItem>
                     <MenuItem value="L_occipital" >Occipital Lobe (L) </MenuItem>
                     <MenuItem value="R_occipital" >Occipital Lobe (R)</MenuItem>
-                    <MenuItem value="L_pareital" >Parietal Lobe (L) </MenuItem>
-                    <MenuItem value="R_pareital" >Parietal Lobe (R)</MenuItem>
+                    <MenuItem value="L_parietal" >Parietal Lobe (L) </MenuItem>
+                    <MenuItem value="R_parietal" >Parietal Lobe (R)</MenuItem>
                     <MenuItem value="L_temporal" >Temporal Lobe (L) </MenuItem>
                     <MenuItem value="R_temporal" >Temporal Lobe (R)</MenuItem>
                   </Select>
@@ -132,6 +133,7 @@ export const NeuroMapping = ({ open, setOpen, PPIndicators, setPPIndicators }) =
           <div className="grid-container">
             <Grid
               rows={rows}
+              checkedFns={checkedFns}
               setCheckedFns={setCheckedFns}
             />
           </div>
